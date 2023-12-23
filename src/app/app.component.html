@@ -1,0 +1,150 @@
+<main class="p-8">
+  <div class="flex text-center justify-self-center">
+    <h1
+      class="text-lg text-justify align-middle object-center font-bold mb-4 text-orange-500"
+    >
+      Application Check Balance
+    </h1>
+  </div>
+
+  <div>
+    <button
+      class="bg-orange-500 rounded px-2 py-3 w-20 text-white font-bold shadow-2xl"
+      (click)="showPopUp()"
+    >
+      Add
+    </button>
+  </div>
+  <div class="overflow-x-auto mt-9">
+    <table class="table-auto w-auto border border-separate border-double">
+      <thead>
+        <tr class="bg-orange-500">
+          <th class="border px-4 py-2">Avatar</th>
+          <th class="border px-4 py-2">Nama</th>
+          <th class="border px-4 py-2">Negara</th>
+          <th class="border px-4 py-2">Kota</th>
+          <th class="border px-4 py-2">Saldo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of nasabah" class="text-center">
+          <td class="border px-4 py-2">
+            <img
+              src="{{ item.avatar }}"
+              class="w-16 h-16 object-cover"
+              alt="{{ item.name }}"
+            />
+          </td>
+          <td class="border px-4 py-2">{{ item.name }}</td>
+          <td class="border px-4 py-2">{{ item.country }}</td>
+          <td class="border px-4 py-2">{{ item.city }}</td>
+          <td class="border px-4 py-2">{{ item.balance }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pop Up Form -->
+  <div
+    *ngIf="isVisible"
+    class="fixed top-0 left-0 w-full flex items-center justify-center bg-black bg-opacity-50"
+  >
+    <div class="bg-white w-1/4 mx-auto my-auto mt-5 p-6 rounded-2xl">
+      <h2 class="text-2xl font-bold mb-5">Add New Entry</h2>
+      <form>
+        <div class="mb-1">
+          <label for="nama" class="block text-sm font-semibold text-gray-600"
+            >Nama:</label
+          >
+          <input
+            #nama
+            type="text"
+            id="nama"
+            name="nama"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+
+        <div class="mb-1">
+          <label for="kota" class="block text-sm font-semibold text-gray-600"
+            >Kota:</label
+          >
+          <input
+            #kota
+            type="text"
+            id="kota"
+            name="kota"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+
+        <div class="mb-1">
+          <label for="negara" class="block text-sm font-semibold text-gray-600"
+            >Negara:</label
+          >
+          <input
+            #negara
+            type="text"
+            id="negara"
+            name="negara"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+
+        <div class="mb-1">
+          <label
+            for="mataUang"
+            class="block text-sm font-semibold text-gray-600"
+            >Mata Uang:</label
+          >
+          <input
+            #mataUang
+            type="text"
+            id="mataUang"
+            name="mataUang"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+
+        <div class="mb-5">
+          <label for="saldo" class="block text-sm font-semibold text-gray-600"
+            >Saldo:</label
+          >
+          <input
+            #saldo
+            type="text"
+            id="saldo"
+            name="saldo"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+
+        <!-- Close Button -->
+        <div class="inline-flex align-middle">
+          <button
+            type="button"
+            (click)="
+              registerData(
+                nama.value,
+                mataUang.value,
+                saldo.value,
+                kota.value,
+                negara.value
+              )
+            "
+            class="bg-orange-500 rounded px-3 py-2 mr-2 text-white"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            (click)="showPopUp()"
+            class="bg-gray-500 rounded px-3 py-2 text-white"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
